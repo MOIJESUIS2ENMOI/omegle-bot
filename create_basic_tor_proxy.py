@@ -17,16 +17,16 @@ from stem import Signal
 from stem.control import Controller
 from stem.connection import connect
 
-def create_tor():
-  SOCKS_PORT = 9050
-  TOR_PATH = os.path.normpath(os.getcwd()+"\\tor\\tor.exe")
-  tor_process = stem.process.launch_tor_with_config(
-    config = {
-      'SocksPort': str(SOCKS_PORT),
-    },
-    init_msg_handler = lambda line: print(line) if re.search('Bootstrapped', line) else False,
-    tor_cmd = TOR_PATH
-  )
+
+SOCKS_PORT = 9050
+TOR_PATH = os.path.normpath(os.getcwd()+"\\tor\\tor.exe")
+tor_process = stem.process.launch_tor_with_config(
+  config = {
+    'SocksPort': str(SOCKS_PORT),
+  },
+  init_msg_handler = lambda line: print(line) if re.search('Bootstrapped', line) else False,
+  tor_cmd = TOR_PATH
+)
 
 
 PROXIES = {
@@ -38,7 +38,3 @@ while True:
   response = requests.get("http://ip-api.com/json/", proxies=PROXIES)
   result = json.loads(response.content)
   print('TOR IP [%s]: %s %s'%(datetime.now().strftime("%d-%m-%Y %H:%M:%S"), result["query"], result["country"]))
-  def changeIP():
-    with Controller.from_port(port = 9051) as controller:
-          controller.authenticate(password='tor')
-          controller.signal(Signal.NEWNYM)
