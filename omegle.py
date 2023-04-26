@@ -54,7 +54,7 @@ def resquestsBloc(message):
 timestart = time.time()
 max_threads = 100
 def spam():
-    message = "Salut! C'est Aline 16 ans. Je nude(payant) sur snap : alinenog2023." 
+    message = "Salut! C'est Aline 16 ans." 
     while True:
         
         while threading.active_count() <= max_threads:
@@ -64,13 +64,13 @@ def spam():
             time.sleep(1)
             
 def requestsThreadCanal():
-    message = "Salut! C'est Aline 16 ans. Je nude(payant) sur snap : alinenog2023." 
+    message = "Salut! C'est Aline 16 ans. " 
     for i in range(max_threads):
         threading.Thread(target=resquestsBloc, args=(message,)).start()
         time.sleep(0.1)
      
 
 #create_tor()
-message = "Salut! C'est Aline 16 ans. Je nude(payant) sur snap : alinenog2023." 
+message = "Salut! C'est Aline 16 ans." 
 
 resquestsBloc(message)
